@@ -6,6 +6,7 @@
         <input type="text" class="form-control"  placeholder="Enter Your Name" formControlName="name">
         <div class="text-danger" *ngIf = "submitted && feedbackErrors">
           <small *ngIf = "feedbackErrors.name.errors?.required">Name Required</small>
+          <small *ngIf = "feedbackErrors.name.errors?.pattern">Invalid Name</small>
         </div>
       </div>
       <div class="form-group">
