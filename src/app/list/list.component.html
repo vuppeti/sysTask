@@ -1,0 +1,67 @@
+<div class="container w-50">
+    <div class="form-group " >
+        <select class="form-control  mx-auto" (change)="dropSelected($event)">
+            <option  >HighToLow</option>
+            <option  >LowToHigh</option>
+        </select>
+    </div>    
+    <div class="card float-center" *ngFor = "let prodsData of viewData  let i=index" >
+      <div id="imgID" class="carousel slide" data-ride="carousel">
+        <ul class="carousel-indicators">
+          <li data-target="#imgID" data-slide-to="0" class="active"></li>
+          <li data-target="#imgID" *ngFor = "let ImageArray1 of prodsData['ImagesArray'] let j=index" data-slide-to="j+1"></li> 
+        </ul>
+        <div class="carousel-inner"  >
+          <div class="carousel-item active">
+            <img src="{{prodsData['ListImagePath']}}{{prodsData['ImagesArray'][0]}}">
+          </div>
+          <div class="carousel-item" *ngFor = "let ImageArray of prodsData['ImagesArray']|slice:1; let i = index;">
+            <img src="{{prodsData['ListImagePath']}}{{ImageArray}}">
+          </div>         
+        </div>
+        <a class="carousel-control-prev" href="#imgID" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#imgID" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+      </div>
+      <div class="card-body">
+        <h4 class="card-title">{{i}}</h4>
+        
+        <div class="row">
+            <div class="col-8"><b>{{prodsData['ProductTitle']}}</b></div>
+            <div class="col-4 card-text"> <b>₹ {{prodsData['MRP']}}/- </b></div>
+        </div>
+        <p class="card-text">{{prodsData['Collection']}}</p>
+        <div class="row">
+            <div class="col-8">{{prodsData['StyleName']}}</div>
+            <div class="col-4 card-text">{{prodsData['StyleNumber']}}</div>
+        </div>
+        <div class="row ml-1">
+            Available Quantity -- 
+            {{prodsData['NetQuantity']}}
+        </div>
+        <div class="row ml-1">
+            Available Quantity --   
+            {{prodsData['NetQuantity']}}
+        </div>
+        <div class="row ml-1">
+            Product Code   
+            {{prodsData['ProductCode']}}
+        </div>
+        <div class="row ml-1">
+            Available Sizes   
+            {{prodsData['AvailableSizes']}}
+        </div>
+      </div>
+    </div>
+</div>    
+    
+    <div
+      class="search-results"
+      infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="onScroll()"
+    ></div>
